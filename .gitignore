@@ -1,2 +1,51 @@
-data/
-notebooks/.ipynb_checkpoints/
+# ================================================================= #
+# Dysphagia Analysis Project .gitignore
+# ================================================================= #
+
+# --- 1. 數據與隱私 (DATA & PRIVACY) ---
+# 這是最重要的規則：絕對不要將任何原始或處理過的數據上傳！
+/data/
+
+
+# --- 2. Python 虛擬環境 (VIRTUAL ENVIRONMENTS) ---
+# 忽略 Poetry 或 venv 建立的虛擬環境資料夾
+# 這包含了所有安裝的套件，應該在每台電腦上重新建立，而不是上傳
+/nearpy/.venv/
+venv/
+*.env
+
+
+# --- 3. Python 快取與編譯檔案 (BYTECODE & CACHE) ---
+# 這些是 Python 自動產生的暫存檔，不需要版本控制
+__pycache__/
+*.py[cod]
+*$py.class
+
+
+# --- 4. Jupyter Notebook 暫存檔 ---
+# 忽略 Jupyter 自動產生的檢查點資料夾
+/notebooks/.ipynb_checkpoints/
+
+
+# --- 5. IDE 與編輯器設定 ---
+# 忽略 VS Code 的本地設定，特別是包含絕對路徑的 settings.json
+/.vscode/
+
+# 忽略 JetBrains 系列 IDE (如 PyCharm) 的設定檔
+.idea/
+
+
+# --- 6. 作業系統檔案 (OS-SPECIFIC FILES) ---
+# 忽略 macOS 的系統檔案
+.DS_Store
+
+# 忽略 Windows 的縮圖快取
+Thumbs.db
+
+
+# --- 7. 其他建置與日誌檔案 ---
+# 忽略任何可能的日誌、建置或分發檔案
+*.log
+build/
+dist/
+*.egg-info/
