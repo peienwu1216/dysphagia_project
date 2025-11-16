@@ -52,18 +52,19 @@ def spike_removal_filter(sig, fs, window_size=10):
     '''
     med_sig = median_filter(sig, size=window_size)
     diff_sig = np.diff(med_sig, prepend=med_sig[0]) # Compute 1st order derivative while preserving shape
-    med_diff = median_filter(diff_sig)
+    med_diff = median_filter(diff_sig,size=window_size)
     xx = np.linspace(0, len(med_diff)/fs, len(med_diff))
-    med_sig = cumulative_trapezoid(med_diff, xx)
+    # cumulative_trapezoid returns one element shorter; prepend the first value to restore length
+    integrated = cumulative_trapezoid(med_diff, xx, initial=0)
 
-    return med_sig
+    return integrated
 
 def ncs_filt(sig, n_taps, f_p=0.1, f_s=15, fs=1000, ftype = 'bandpass'):
     # Helper function to maintain compatibility with prior MATLAB scripts
     if ftype == 'lowpass':
         band = [0, f_p, f_s, 0.5*fs]
         gain = [1, 0]
-    elif ftype == 'bandass':
+    elif ftype == 'bandpass':
         band = [0, f_p/2 , f_p, f_s, f_s + f_p, 0.5*fs]
         gain = [0, 1, 0]
     elif ftype == 'highpass':

@@ -63,6 +63,7 @@ def plot_time_series(data: Dict):
     '''
     # Set publication-ready styling with SciencePlots
     plt.style.use(['science', 'ieee'])
+    plt.rcParams['text.usetex'] = False #Added by Jessie
     plt.rcParams['figure.dpi'] = 300
     plt.rcParams['savefig.dpi'] = 300
     
